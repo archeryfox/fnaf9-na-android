@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ProfilePic"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2B2C49"
+    android:clickable="true"
+    android:contextClickable="true"
+    android:paddingLeft="@dimen/material_clock_period_toggle_width"
+    android:paddingRight="@dimen/material_clock_period_toggle_width"
+    tools:context=".MainActivity">
+
+
+    <Toolbar
+        android:id="@+id/toolbar"
+        style="@style/myCorners"
+        android:layout_width="match_parent"
+        android:layout_height="118dp"
+        android:layout_marginTop="-59dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/Logo"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="@android:color/transparent"
+        android:foreground="@drawable/dogg"
+        android:pointerIcon="cell"
+        app:cardCornerRadius="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/grd1"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Logo">
+
+        <EditText
+            android:id="@+id/LoginName"
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            android:background="@color/bg"
+            android:ems="10"
+            android:hint=" Dog name"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ProfileRegPic" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/grd1">
+
+        <EditText
+            android:id="@+id/PassAuth"
+            android:layout_width="220dp"
+            android:layout_height="match_parent"
+            android:background="@color/bg"
+            android:ems="10"
+            android:hint=" Passwoof"
+            android:inputType="textPassword" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/AuthButt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#D66D94"
+        android:foregroundTint="#FFFFFF"
+        android:text="Go into"
+        android:textColor="#FFFFFF"
+        app:cornerRadius="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <CheckedTextView
+        android:id="@+id/RegistrationAddr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:longClickable="true"
+        android:onClick="RegHome"
+        android:text="Завести будку"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AuthButt" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
