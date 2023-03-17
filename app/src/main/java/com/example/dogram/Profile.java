@@ -1,6 +1,7 @@
 package com.example.dogram;
 
 import android.R.drawable;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -13,26 +14,44 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Profile extends AppCompatActivity {
+    User currentUser = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        User user = new User();
+        List<User> AuthorisedUsers = null;
         try {
-            user = new FileWork<User>("").JsonReader(this.getFilesDir().getPath());
+            AuthorisedUsers = (List<User>) (new FileWork<User>().JsonReader(this.getFilesDir() + "/Users.json"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        ((TextView) findViewById(R.id.log)).setText(user.getName());
-        ((TextView) findViewById(R.id.pas)).setText(user.getPassword());
-        Drawable piic = Drawable.createFromPath(this.getFilesDir()+"/profile_pic.jpg");
-        ((CardView) findViewById(R.id.ProfileRegPic)).setForeground(piic);
+
+        for (int i = 0; i < AuthorisedUsers.size(); i++) {
+            try {
+                if (AuthorisedUsers.get(i).getIsCurrent()) {
+                    currentUser = AuthorisedUsers.get(i);
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        ((TextView) findViewById(R.id.log)).setText(currentUser.getName());
+        ((TextView) findViewById(R.id.pas)).setText(currentUser.getPassword());
+        if (new File(this.getFilesDir() + "/profile_pic_ID" + (AuthorisedUsers.size()) + ".jpg").exists()) {
+            Drawable piic = Drawable.createFromPath(this.getFilesDir() + "/profile_pic_ID" + (AuthorisedUsers.size()) + ".jpg");
+            ((CardView) findViewById(R.id.ProfileRegPic)).setForeground(piic);
+        }
     }
 
     public void ToAuth(View view) {
@@ -40,8 +59,9 @@ public class Profile extends AppCompatActivity {
         new AlertDialog.Builder(this)
                 .setTitle("Выход из аккаунта")
                 .setMessage("Вы уверены, что хотите выйти?")
-                .setNegativeButton("Остаться", new DialogInterface.OnClickListener(){
-                    public void onClick(DialogInterface dialog, int which) {}
+                .setNegativeButton("Остаться", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
                 })
                 .setPositiveButton("Да", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {

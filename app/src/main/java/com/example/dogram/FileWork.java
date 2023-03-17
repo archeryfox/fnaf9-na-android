@@ -1,13 +1,10 @@
 package com.example.dogram;
 
-import android.icu.lang.UScript;
-
 import java.io.*;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -15,18 +12,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class FileWork<T> {
-    private String Path = System.getProperty("user.home") + "\\OneDrive\\Рабочий стол";
 
     /**
-     * @param path Путь до файла
+     *
      */
-    public FileWork(String path) {
-        Path = path;
-    }
 
-    public String getPath() {
-        return Path;
-    }
 
     public String JsonWriter(ArrayList<T> LIST) throws IOException {
         GsonBuilder gbdr = new GsonBuilder();
@@ -42,19 +32,21 @@ public class FileWork<T> {
         return sjon;
     }
 
-    public User JsonReader(String file) throws IOException {
-        Path path = Paths.get(file + "/" + "User.json");
-        Scanner scanner = new Scanner(path);
+    public List<User> JsonReader(String file) throws IOException {
+        File f = new File(file);
+        Scanner scanner = new Scanner(f);
         System.err.println("Читаю текст из файла...");
         String maText = "";
+
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             maText += line;
         }
         System.out.println("Строчка: " + maText);
         scanner.close();
-        return new Gson().fromJson(maText, User.class);
-}
+        return new Gson().fromJson(maText.toString(), new TypeToken<List<User>>() {
+        });
+    }
 
     public String FileWrite(String text) throws IOException {
         String userDesktopFolder = System.getProperty("user.home") + "\\OneDrive\\Рабочий стол";

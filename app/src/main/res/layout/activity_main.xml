@@ -53,6 +53,7 @@
             android:background="@color/bg"
             android:ems="10"
             android:hint=" Dog name"
+            android:text=""
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -75,6 +76,7 @@
             android:layout_height="match_parent"
             android:background="@color/bg"
             android:ems="10"
+            android:text=""
             android:hint=" Passwoof"
             android:inputType="textPassword" />
 
@@ -89,6 +91,7 @@
         android:backgroundTint="#D66D94"
         android:foregroundTint="#FFFFFF"
         android:text="Go into"
+        android:onClick="Authorization"
         android:textColor="#FFFFFF"
         app:cornerRadius="35dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -97,13 +100,14 @@
 
     <CheckedTextView
         android:id="@+id/RegistrationAddr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="99dp"
+        android:layout_height="41dp"
         android:layout_marginTop="24dp"
         android:clickable="true"
         android:longClickable="true"
         android:onClick="RegHome"
-        android:text="Завести будку"
+        android:padding="0dp"
+        android:text="@string/reg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
