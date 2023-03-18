@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.google.gson.*;
 
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,22 +68,25 @@ public class MainActivity extends AppCompatActivity {
         startActivity(iny);
     }
 
-     /**
+    /**
      * Авторизация на главном экране.
      * Проверяет в файлах приложения json
+     *
      * @param view
      */
-    public void Authorization(View view) {
-        EditText login = (EditText) view.findViewById(R.id.LoginName);
-        EditText pass = (EditText) view.findViewById(R.id.PassAuth);
-
+    public void Authorization(View view) throws FileNotFoundException {
+        EditText login = findViewById(R.id.LoginName);
+        EditText pass = findViewById(R.id.PassAuth);
+        String name = login.getText().toString();
+        String passw = pass.getText().toString();
         if (true) {
             // Авторизация прошла успешно
             Toast.makeText(this, "Avtorizacia", Toast.LENGTH_SHORT).show();
-            List<User> AuthorisedUsers = (new Gson().fromJson("/data/user/0/com.example.dogram/files/Users.json", new ArrayList<User>().getClass()));
-            for (User user : AuthorisedUsers) {
-                if (user.getName().equals(login)) {
-                    if (AuthorisedUsers.get(AuthorisedUsers.indexOf(user)).getPassword().equals(pass)) {
+            UserList users1 = new Gson().fromJson(new FileReader("/data/user/0/com.example.dogram/files/Users.json"), UserList.class);
+            for (User user : users1) {
+                if (user.getName().equals(name)) {
+                    if (users1.get(users1.indexOf(user)).getPassword().equals(passw)) {
+
                         // Авторизация прошла успешно
                         Toast.makeText(this, "Авторизация прошла успешно", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(this, Profile.class);

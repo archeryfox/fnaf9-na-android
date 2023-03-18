@@ -48,8 +48,8 @@ public class Profile extends AppCompatActivity {
         }
         ((TextView) findViewById(R.id.log)).setText(currentUser.getName());
         ((TextView) findViewById(R.id.pas)).setText(currentUser.getPassword());
-        if (new File(this.getFilesDir() + "/profile_pic_ID" + (AuthorisedUsers.size()) + ".jpg").exists()) {
-            Drawable piic = Drawable.createFromPath(this.getFilesDir() + "/profile_pic_ID" + (AuthorisedUsers.size()) + ".jpg");
+        if (new File(currentUser.getAvatar()).exists()) {
+            Drawable piic = Drawable.createFromPath(currentUser.getAvatar());
             ((CardView) findViewById(R.id.ProfileRegPic)).setForeground(piic);
         }
     }

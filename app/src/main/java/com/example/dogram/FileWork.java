@@ -44,8 +44,7 @@ public class FileWork<T> {
         }
         System.out.println("Строчка: " + maText);
         scanner.close();
-        return new Gson().fromJson(maText.toString(), new TypeToken<List<User>>() {
-        });
+        return new Gson().fromJson(maText.toString(), UserList.class);
     }
 
     public String FileWrite(String text) throws IOException {

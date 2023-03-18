@@ -129,36 +129,37 @@ public class Registration extends AppCompatActivity {
                 newUser = new User(Name, Password, "/data/user/0/com.example.dogram/files" + "/profile_pic_ID" + (users.size()) + ".jpg", true);
             }
             String file = "Users.json";
+            UserList users1 = new Gson().fromJson(new FileReader("/data/user/0/com.example.dogram/files/Users.json"), UserList.class);
             File textFile = new File("/data/user/0/com.example.dogram/files", file);
             FileWriter writer = new FileWriter(textFile);
             if (new File("/data/user/0/com.example.dogram/files/" + file).exists()) {
-                BufferedReader reader = new BufferedReader(new FileReader("/data/user/0/com.example.dogram/files/Users.json"));
+//                BufferedReader reader = new BufferedReader(new FileReader("/data/user/0/com.example.dogram/files/Users.json"));
                 String line2 = "";
                 Path path = Paths.get(textFile + "");
                 Scanner scanner = new Scanner(path);
                 System.err.println("Читаю текст из файла...");
                 String maText = "";
                 String l = "";
-                /*while ((reader.readLine() != null)) {
-                    line2 = reader.readLine();
+              /*  while ((line2 = reader.readLine()) != null) {
                     maText += line2;
-                }*/
-                System.out.println("Строчка!1: " + maText);
-                scanner.close();
-                if (line2.equals("")) {
-                    BufferedWriter br = new BufferedWriter(new FileWriter("/data/user/0/com.example.dogram/files/Users.json"));
-                    line2 = "[]";
-                    br.write(line2 + "");
                 }
+                reader.close();
+                System.out.println("Строчка!1: " + maText);
+                if (maText.equals("")) {
+                    BufferedWriter br = new BufferedWriter(new FileWriter("/data/user/0/com.example.dogram/files/Users.json"));
+                    maText = "[]";
+                    br.write(maText + "");
+                    br.close();
+                }*/
                 List<User> us = null;
                 us = (List<User>) (new FileWork<User>().JsonReader("/data/user/0/com.example.dogram/files/Users.json"));
 //                us = new Gson().fromJson(line2, new ArrayList<User>().getClass());
                 // line2 работает
                 // чтение нихера не работает
 //                new Gson().fromJson(line2, new ArrayList<User>().getClass());
-                if (us != null) {
-                    us.add(newUser);
-                    String profiles = gson.toJson(us);
+                if (users1 != null) {
+                    users1.add(newUser);
+                    String profiles = gson.toJson(users1);
                     writer.write(profiles);
                 }
             } else {
